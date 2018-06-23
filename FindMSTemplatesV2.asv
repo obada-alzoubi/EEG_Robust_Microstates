@@ -83,7 +83,7 @@ end
 % Paramter specefic for each algorithms
 p = randperm(size(MapsToUse,2));
 MapsToUse = double(MapsToUse);
-MapsToUse = MapsToUse(:, p); % Randmoize smaples 
+MapsToUse = MapsToUse(:, p); 
 if ClustPar.IgnorePolarity == true
     flags = '';
 else
@@ -335,9 +335,9 @@ for nClusters = Clut_Range
     
     msinfo.Performance(nClusters).Alg = Alg_name;
 end
-%[g] = KL_Metric(MapsToUse,L_all,Clut_Range); 
-g = zeros(1, max(Clut_Range));
-msinfo.KL = zeros(1, max(Clut_Range));
+[g] = KL_Metric(MapsToUse,L_all,Clut_Range); 
+
+msinfo.KL = g;
 
 msinfo.ClustPar = ClustPar;
 

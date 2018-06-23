@@ -72,7 +72,13 @@ function [MSClass,gfp, fit] = AssignMStatesV2(eegdata, Maps, params, IgnorePolar
     if params.PeakFit == 1
         Fit = nan(nClasses,size(eegdata.data,2));
         for s = 1:nSegments
-            IsIn = find([false (gfp(1,1:end-2,s) < gfp(1,2:end-1,s) & gfp(1,2:end-1,s) > gfp(1,3:end,s)) false]);
+            %IsIn = find([false (gfp(1,1:end-2,s) < gfp(1,2:end-1,s) & gfp(1,2:end-1,s) > gfp(1,3:end,s)) false]);
+            x = 1:eegdata.pnts;
+            gfP_smoothed = smoothdata(gfp, 'gaussian',2);
+
+            [~, IsIn] = findpeaks(gfP_smoothed,x, 'MinPeakDistance',2);
+
+            
             if isempty(IsIn)
                 errordlg2('No GFP peaks found','Microstate fitting');
                 MSClass = [];
