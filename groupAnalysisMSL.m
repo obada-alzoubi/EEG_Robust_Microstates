@@ -15,9 +15,12 @@ Nsubj = length(DataList);
 eeglab; close;
 
 %load('arguments_SOM.mat')
-normalizeEEG =Param.normalizeEEG;
+%normalizeEEG =Param.normalizeEEG;
 %
 %normc_fcn = @(m) sqrt(m.^2 ./ sum(m.^2));
+%% Normalise EEG
+
+
 
 for iSubj =1:Nsubj
     
@@ -26,9 +29,10 @@ for iSubj =1:Nsubj
     
     mkdir(DataList{iSubj, 4})
     
-    try 
+    %try 
         if Param.edf==true % ICA Corretec
-            EEG = pop_fileio(DataList{iSubj, 3});
+            %EEG = pop_fileio(DataList{iSubj, 3});
+            [EEG] = readParallel(DataList{iSubj, 3});
             EEG = pop_select(EEG, 'channel', 1:31);% Remove ECG Channel
             EEG = pop_eegfiltnew(EEG, 2,20); 
             EEG = pop_reref( EEG, []);
@@ -71,10 +75,10 @@ for iSubj =1:Nsubj
         %sfile = sprintf('%s.mat', sfile);
         %EEG.setname= sfile;
         save_in_Parall(EEG, sM, sD,  Param, iSubj);
-    catch
+    %catch
         fprintf(1,'Had a problem in dataset %s (%i/%i)', strcat('subj_', ...
         int2str(iSubj)), iSubj, Nsubj);
-    end
+    %end
     
 end
 

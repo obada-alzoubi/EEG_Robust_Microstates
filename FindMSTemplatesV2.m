@@ -38,6 +38,7 @@ else
 end
 
 MapsToUse = [];
+
 %EEG.data = EEG.data ./ mean(std(EEG.data,0,2));
 data_raw = EEG.data;
 %EEG.data = normc(EEG.data);
@@ -47,12 +48,12 @@ for s = 1:nSegments
         gfp = std(data_raw(:,:,s),1,1);
         % Obada Modified this to use MATLAB biultin function to find
         % peaks:
-        gfP_smoothed = smoothdata(gfp, 'gaussian',3);
-        
+        %gfP_smoothed = smoothdata(gfp, 'gaussian',3);
+        gfP_smoothed = gfp;
         x = 1:EEG.pnts;
 
         [pk, IsGFPPeak] = findpeaks(gfP_smoothed,x, 'MinPeakDistance',...
-            4);
+            2);
         f1= figure;
         plot(gfP_smoothed)
         hold on 

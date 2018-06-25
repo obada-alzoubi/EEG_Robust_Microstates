@@ -74,9 +74,9 @@ function [MSClass,gfp, fit] = AssignMStatesV2(eegdata, Maps, params, IgnorePolar
         for s = 1:nSegments
             %IsIn = find([false (gfp(1,1:end-2,s) < gfp(1,2:end-1,s) & gfp(1,2:end-1,s) > gfp(1,3:end,s)) false]);
             x = 1:eegdata.pnts;
-            gfP_smoothed = smoothdata(gfp, 'gaussian',2);
+            gfP_smoothed = smoothdata(gfp, 'gaussian',3);
 
-            [~, IsIn] = findpeaks(gfP_smoothed,x, 'MinPeakDistance',2);
+            [~, IsIn] = findpeaks(gfP_smoothed,x, 'MinPeakDistance',1);
 
             
             if isempty(IsIn)
