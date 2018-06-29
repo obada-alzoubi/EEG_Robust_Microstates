@@ -253,7 +253,8 @@ sig2 = Inf;
 % Step 2a
 A = X(:,randperm(N,K)); % selecting K random timepoints to use as initial microstate maps
 %A = bsxfun(@rdivide,A,sqrt(diag(A*A')));% normalising
-A=normc(A);
+A = (A - repmat(mean(A,1), 31, 1)) ./ repmat(std(A,1), 31, 1);
+%A=normc(A);
 %% Iterations (step 3 to 6)
 ind = 0;
 while abs(sig2_old-sig2) >= thresh*sig2 && max_iterations>ind

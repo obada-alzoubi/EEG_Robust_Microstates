@@ -44,7 +44,7 @@ EEG.data  = EEG.data  ./ repmat(std(EEG.data ,1), 31, 1); % already have average
 for s = 1:nSegments
     
     if ClustPar.GFPPeaks == 1
-        gfp = std(EEG.rawData(:,:,s),1,1);
+        gfp = std(EEG.data(:,:,s),1,1);
         % Obada Modified this to use MATLAB biultin function to find
         % peaks:
         gfP_smoothed = smoothdata(gfp, 'gaussian',5);

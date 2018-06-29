@@ -23,7 +23,7 @@ function [b_model,Assignment,exp_var] = eeg_computeAAHC(eeg,n_mod,ProgBar, Ignor
     %eeg = NormDimL2(eeg,2) / sqrt(n_chan);
     % Initally, all maps are clusters
     %Cluster = NormDimL2(eeg,2) / sqrt(n_chan);
-Cluster =eeg;
+    Cluster =eeg;
     GEV = sum(eeg.*Cluster,2);
     TotalVar = sum(GEV);
     if (IgnorePolarity == true);    GEV = abs(GEV); end

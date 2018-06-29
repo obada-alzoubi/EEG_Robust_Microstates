@@ -88,10 +88,11 @@ if Ntrials > 1 % for epoched data
 end
 
 % Normalise EEG and maps (average reference and gfp = 1 for EEG)
-%Xnrm = X ./ repmat(std(X,1), C, 1); % already have average reference
-%A_nrm = (A - repmat(mean(A,1), C, 1)) ./ repmat(std(A,1), C, 1);
-Xnrm= X;
-A_nrm=A;
+Xnrm = X ./ repmat(std(X,1), C, 1); % already have average reference
+%Xnrm2=normc(Xnrm);
+A_nrm = (A - repmat(mean(A,1), C, 1)) ./ repmat(std(A,1), C, 1);
+%Xnrm= X;
+%A_nrm=A;
 % Global map dissilarity
 GMD = nan(K,N);
 for k = 1:K

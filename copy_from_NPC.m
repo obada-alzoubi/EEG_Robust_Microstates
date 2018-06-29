@@ -1,4 +1,4 @@
-T1000_HC = copyT500('sub_files/MA_Medicated.csv');
+T1000_HC = copyT500('sub_files/SU_Subjects_CopyList.csv');
 T500 = copyT500('sub_files/T500_list.csv');
 OUT_FOLDER = 'L:\jbodurka\Obada\ICA_Corrected_MS';
 SOURCE_FOLDER ='L:\NPC\Analysis\T1000\data-organized';
